@@ -25,6 +25,9 @@ class Book
     #[ORM\Column(type: 'string', length: 255)]
     private $status;
 
+    #[ORM\OneToOne(mappedBy: 'book', targetEntity: Borrow::class, cascade: ['persist', 'remove'])]
+    private $borrowStatus;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -74,6 +77,23 @@ class Book
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getBorrowStatus(): ?Borrow
+    {
+        return $this->borrowStatus;
+    }
+
+    public function setBorrowStatus(Borrow $borrowStatus): self
+    {
+        // set the owning side of the relation if necessary
+        if ($borrowStatus->getBook() !== $this) {
+            $borrowStatus->setBook($this);
+        }
+
+        $this->borrowStatus = $borrowStatus;
 
         return $this;
     }
