@@ -3,16 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %} - Biblioteka{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/167/167755.png">
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ 'assets/css/bootstrap.min.css' }}" />
         {% endblock %}
 
         {% block javascripts %}
-            <script src="{{ 'assets/js/jquery.min.css' }}"></script>
-            <script src="{{ 'assets/js/popper.js' }}"></script>
-            <script src="{{ 'assets/js/bootstrap.min.js' }}"></script>
+            <script src="{{ 'assets/js/jquery-3.6.0.slim.min.js' }}"></script>
+            <script src="{{ 'assets/js/popper.min.js' }}"></script>
+            <script src="{{ 'assets/js/bootstrap.js' }}"></script>
         {% endblock %}
     </head>
     <body>
@@ -20,11 +19,18 @@
             <div class="container mb-2 mt-2">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request .get('_route') == 'index' %} active {% endif %}" href="{{ path('index') }}">Strona główna</a>
+                        <a class="nav-link {% if app.request.get('_route') == 'index' %} active {% endif %}" href="{{ path('index') }}">Strona główna</a>
                     </li>
+                    {% if is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Wypożyczone książki</a>
+                        </li>
+                    {% endif %}
+                    {% if not app.user %}
                     <li class="nav-item">
-                        <a class="nav-link {% if app.request .get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">Zaloguj się</a>
+                        <a class="nav-link {% if app.request.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">Zaloguj się</a>
                     </li>
+                    {% endif %}
                     {% if app.user %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj</a>
