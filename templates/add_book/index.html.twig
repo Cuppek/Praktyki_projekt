@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dodawanie książki{{ parent() }}{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+<div class="container">
+    <h1 class="h3 mb-3 font-weight-normal">Dodawanie książki</h1>
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.author) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.status) }}
+        <input type="submit" value="Dodaj" class="btn btn-lg btn-primary mt-2">
+    {{ form_end(form) }}
+</div>
+{% endblock %}

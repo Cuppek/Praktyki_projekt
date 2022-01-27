@@ -19,7 +19,7 @@ class Book
     #[ORM\Column(type: 'string', length: 255)]
     private $author;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'text', nullable: true)]
     private $description;
 
     #[ORM\Column(type: 'string', length: 255)]
