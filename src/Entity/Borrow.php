@@ -13,11 +13,11 @@ class Borrow
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToOne(inversedBy: 'borrowStatus', targetEntity: book::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'borrowStatus', targetEntity: Book::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private $book;
 
-    #[ORM\ManyToOne(targetEntity: user::class)]
+    #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
@@ -32,24 +32,24 @@ class Borrow
         return $this->id;
     }
 
-    public function getBook(): ?book
+    public function getBook(): ?Book
     {
         return $this->book;
     }
 
-    public function setBook(book $book): self
+    public function setBook(Book $book): self
     {
         $this->book = $book;
 
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 

@@ -22,7 +22,7 @@
                         <a class="nav-link {% if app.request.get('_route') == 'index' %} active {% endif %}" href="{{ path('index') }}">Strona główna</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Wszystkie książki</a>
+                        <a class="nav-link {% if app.request.get('_route') == 'all_books' %} active {% endif %}" href="{{ path('all_books') }}">Wszystkie książki</a>
                     </li>
                     {% if is_granted('ROLE_USER') %}
                         <li class="nav-item">

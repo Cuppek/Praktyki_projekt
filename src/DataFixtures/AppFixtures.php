@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Book;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -28,6 +29,41 @@ class AppFixtures extends Fixture
         $user->setUsername('user');
         $user->setPassword($this->passwordHasher->hashPassword($user, 'user'));
         $manager->persist($user);
+
+        $book = new Book();
+        $book->setTitle('Władca pierścieni');
+        $book->setAuthor('J.R.R. Tolkien');
+        $book->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $book->setStatus(true);
+        $manager->persist($book);
+
+        $book = new Book();
+        $book->setTitle('Buszujący w zbożu');
+        $book->setAuthor('Jerome David Salinger');
+        $book->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $book->setStatus(true);
+        $manager->persist($book);
+
+        $book = new Book();
+        $book->setTitle('Harry Potter - seria');
+        $book->setAuthor('J.K. Rowling');
+        $book->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $book->setStatus(true);
+        $manager->persist($book);
+
+        $book = new Book();
+        $book->setTitle('Duma i uprzedzenie');
+        $book->setAuthor('Jane Austin');
+        $book->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $book->setStatus(true);
+        $manager->persist($book);
+
+        $book = new Book();
+        $book->setTitle('Paragraf 22');
+        $book->setAuthor('Joseph Heller');
+        $book->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+        $book->setStatus(true);
+        $manager->persist($book);
 
         $manager->flush();
     }
