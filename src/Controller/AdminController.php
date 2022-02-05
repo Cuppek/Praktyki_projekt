@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use App\Form\AddBookType;
@@ -9,10 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[IsGranted('ROLE_ADMIN')]
-class AddBookController extends AbstractController
+class AdminController extends AbstractController
 {
     #[Route('/add', name: 'add')]
-    public function index(): Response
+    public function add(): Response
     {
         $addBookForm = $this->createForm(AddBookType::class);
 
