@@ -8,15 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[IsGranted("ROLE_ADMIN")]
+#[IsGranted('ROLE_ADMIN')]
 class AddBookController extends AbstractController
 {
-    #[Route('/add_book', name: 'add_book')]
+    #[Route('/add', name: 'add')]
     public function index(): Response
     {
         $addBookForm = $this->createForm(AddBookType::class);
 
-        return $this->render('add_book/index.html.twig', [
+        return $this->render('book/add.html.twig', [
             'form' => $addBookForm->createView(),
         ]);
     }

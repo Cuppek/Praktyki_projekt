@@ -9,14 +9,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AllBooksController extends AbstractController
 {
-    #[Route('/all_books', name: 'all_books')]
+    #[Route('/all', name: 'all')]
     public function index(): Response
     {
         $em = $this->getDoctrine()->getManager();
         $allAvailableBooks = $em->getRepository(Book::class)->findByStatus(1);
         $allBooks = $em->getRepository(Book::class)->findAll();
 
-        return $this->render('all_books/index.html.twig', [
+        return $this->render('book/all.html.twig', [
             'allAvailableBooks' => $allAvailableBooks,
             'allBooks' => $allBooks,
         ]);
