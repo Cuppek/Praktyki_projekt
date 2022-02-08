@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Book;
+use App\Entity\Borrow;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -27,6 +28,7 @@ class AppFixtures extends Fixture
 
         $user = new User();
         $user->setUsername('user');
+        $user->setRoles(['ROLE_ADMIN']);
         $user->setPassword($this->passwordHasher->hashPassword($user, 'user'));
         $manager->persist($user);
 
@@ -64,6 +66,11 @@ class AppFixtures extends Fixture
         $book->setDescription('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
         $book->setStatus(true);
         $manager->persist($book);
+
+        $borrow = new Borrow();
+        $borrow->setUser($user);
+        $borrow->setBook($book);
+        $manager->persist($borrow);
 
         $manager->flush();
     }

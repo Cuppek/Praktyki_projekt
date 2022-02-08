@@ -23,7 +23,7 @@ class BookRepository extends ServiceEntityRepository
       * @return Book[] Returns an array of Book objects
       */
 
-    public function findByStatus($value)
+    public function findByStatus($value): array
     {
         return $this->createQueryBuilder('b')
             ->andWhere('b.status = :val')
