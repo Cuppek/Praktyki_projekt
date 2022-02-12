@@ -10,12 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 #[IsGranted('ROLE_ADMIN')]
 class AdminController extends AbstractController
 {
-    #[Route('/add', name: 'add')]
-    public function add(): Response
+    #[Route('/addBook', name: 'addBook')]
+    public function addBook(): Response
     {
         $addBookForm = $this->createForm(AddBookType::class);
 
-        return $this->render('book/add.html.twig', [
+        return $this->render('book/addBook.html.twig', [
             'form' => $addBookForm->createView(),
         ]);
     }

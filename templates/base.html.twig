@@ -21,30 +21,27 @@
                     <li class="nav-item">
                         <a class="nav-link {% if app.request.get('_route') == 'index' %} active {% endif %}" href="{{ path('index') }}">Strona główna</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') == 'all' %} active {% endif %}" href="{{ path('all') }}">Wszystkie książki</a>
-                    </li>
                     {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') == 'allBooks' %} active {% endif %}" href="{{ path('allBooks') }}">Wszystkie książki</a>
+                    </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Wypożyczone książki</a>
+                            <a class="nav-link {% if app.request.get('_route') == 'borrowed' %} active {% endif %}" href="{{ path('borrowed') }}">Wypożyczone książki</a>
                         </li>
                     {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link {% if app.request.get('_route') == 'add' %} active {% endif %}" href="{{ path('add') }}">Dodaj książkę</a>
+                            <a class="nav-link {% if app.request.get('_route') == 'addBook' %} active {% endif %}" href="{{ path('addBook') }}">Dodaj książkę</a>
                         </li>
-                    {% endif %}
-                    {% if not app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if app.request.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">Zaloguj się</a>
-                    </li>
                     {% endif %}
                     {% if app.user %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('app_logout') }}">Wyloguj</a>
                     </li>
-                    {% endif %}
-                    {% if not app.user %}
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if app.request.get('_route') == 'app_login' %} active {% endif %}" href="{{ path('app_login') }}">Zaloguj się</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Zarejestruj się</a>
                     </li>

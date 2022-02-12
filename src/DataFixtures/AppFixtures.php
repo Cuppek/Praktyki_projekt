@@ -67,10 +67,10 @@ class AppFixtures extends Fixture
         $book->setStatus(true);
         $manager->persist($book);
 
-        $borrow = new Borrow();
-        $borrow->setUser($user);
-        $borrow->setBook($book);
-        $manager->persist($borrow);
+//        $borrow = new Borrow();
+//        $borrow->setUser($user);
+//        $borrow->setBook($book);
+//        $manager->persist($borrow);
 
         $manager->flush();
     }

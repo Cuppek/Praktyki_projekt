@@ -18,13 +18,13 @@ class UserController extends AbstractController
         $this->em = $this->getDoctrine()->getManager();
     }
 
-    #[Route('/all', name: 'all')]
-    public function all(): Response
+    #[Route('/allBooks', name: 'allBooks')]
+    public function allBooks(): Response
     {
         $allAvailableBooks = $this->em->getRepository(Book::class)->findByStatus(1);
         $allBooks = $this->em->getRepository(Book::class)->findAll();
 
-        return $this->render('book/all.html.twig', [
+        return $this->render('book/allBooks.html.twig', [
             'allAvailableBooks' => $allAvailableBooks,
             'allBooks' => $allBooks,
         ]);
