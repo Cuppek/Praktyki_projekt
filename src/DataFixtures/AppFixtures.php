@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
 
         $user = new User();
         $user->setUsername('user');
-        $user->setRoles(['ROLE_ADMIN']);
+        $user->setRoles(['ROLE_USER']);
         $user->setPassword($this->passwordHasher->hashPassword($user, 'user'));
         $manager->persist($user);
 
@@ -67,10 +67,12 @@ class AppFixtures extends Fixture
         $book->setStatus(true);
         $manager->persist($book);
 
-//        $borrow = new Borrow();
-//        $borrow->setUser($user);
-//        $borrow->setBook($book);
-//        $manager->persist($borrow);
+        $borrow = new Borrow();
+        $borrow->setUser($user);
+        $borrow->setBook($book);
+        $borrow->setBorrowDateTime(new \DateTime(sprintf('-%d days', rand(1, 10))));
+        $borrow->setReturnDate(new \DateTime(sprintf('+%d days', rand(1, 10))));
+        $manager->persist($borrow);
 
         $manager->flush();
     }
