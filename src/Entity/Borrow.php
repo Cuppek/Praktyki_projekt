@@ -68,9 +68,9 @@ class Borrow
         return $this;
     }
 
-    public function getReturnDate(): ?\DateTimeInterface
+    public function getReturnDate()
     {
-        return $this->returnDate;
+        return $this->returnDate->format('d/m/Y');
     }
 
     public function setReturnDate(\DateTimeInterface $returnDate): self

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Entity\Book;
+use App\Entity\Borrow;
 use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,7 @@ class UserController extends AbstractController
     public function __construct(ManagerRegistry $doctrine)
     {
         $this->bookRepository = $doctrine->getManager()->getRepository(Book::class);
+        $this->borrowRepository = $doctrine->getManager()->getRepository(Borrow::class);
     }
 
     #[Route('/allBooks', name: 'allBooks')]
@@ -31,10 +33,10 @@ class UserController extends AbstractController
     #[Route('/borrowed', name: 'borrowed')]
     public function borrowed(): Response
     {
-        $borrowedBooks = $this->bookRepository->findBy();
+        $borrowMade = $this->borrowRepository->findBy(['user' => $this->getUser()]);
 
-        return $this->render('borrowed.html.twig', [
-            'borrowed' => $borrowedBooks,
+        return $this->render('book/borrowed.html.twig', [
+            'borrows' => $borrowMade,
         ]);
     }
 }

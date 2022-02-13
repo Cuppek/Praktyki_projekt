@@ -67,12 +67,12 @@ class AppFixtures extends Fixture
         $book->setStatus(true);
         $manager->persist($book);
 
-        $borrow = new Borrow();
-        $borrow->setUser($user);
-        $borrow->setBook($book);
-        $borrow->setBorrowDateTime(new \DateTime(sprintf('-%d days', rand(1, 10))));
-        $borrow->setReturnDate(new \DateTime(sprintf('+%d days', rand(1, 10))));
-        $manager->persist($borrow);
+//        $borrow = new Borrow();
+//        $borrow->setUser($user);
+//        $borrow->setBook($book);
+//        $borrow->setBorrowDateTime(new \DateTime(sprintf('-%d days', rand(1, 10))));
+//        $borrow->setReturnDate(new \DateTime(sprintf('+%d days', rand(1, 10))));
+//        $manager->persist($borrow);
 
         $manager->flush();
     }
