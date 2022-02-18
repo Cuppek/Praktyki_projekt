@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     private \Doctrine\Persistence\ObjectRepository $bookRepository;
+    private \Doctrine\Persistence\ObjectRepository $borrowRepository;
 
     public function __construct(ManagerRegistry $doctrine)
     {
