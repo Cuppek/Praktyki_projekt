@@ -15,9 +15,9 @@ class BookService
         $this->borrowRepository = $doctrine->getManager()->getRepository(Borrow::class);
     }
 
-    public function isBookBorrowed(Book $book)
+    public function isBookBorrowed(Book $book): bool
     {
-        if ($this->borrowRepository->findBy(['title' => $book->getTitle()])) {
+        if ($this->borrowRepository->findBy(['id' => $book->getId()])) {
             return true;
         } else {
             return false;

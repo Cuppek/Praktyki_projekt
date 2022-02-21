@@ -24,10 +24,10 @@ class UserController extends AbstractController
     #[Route('/allBooks', name: 'allBooks')]
     public function allBooks(): Response
     {
-        $allBooks = $this->bookRepository->findAll();
+        $allAvailableBooks = $this->bookRepository->findBy(['status' => 1]);
 
         return $this->render('book/allBooks.html.twig', [
-            'allBooks' => $allBooks,
+            'allAvailableBooks' => $allAvailableBooks,
         ]);
     }
 
