@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -34,6 +35,17 @@ class BookRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findOneById($value): ?Book
+    {
+        try {
+            return $this->createQueryBuilder('b')
+                ->andWhere('b.id = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getOneOrNullResult();
+        } catch (NonUniqueResultException $e) {
+        }
+    }
 
     /*
     public function findOneBySomeField($value): ?Book

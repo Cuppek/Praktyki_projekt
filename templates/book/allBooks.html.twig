@@ -16,16 +16,28 @@
                 {% if app.user %}
                 <th scope="col" style="width: 10%">Opcje</th>
                 {% endif %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <th scope="col" style="width: 10%">Status</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
-                {% for book in allAvailableBooks %}
+                {% for book in allBooks %}
                     <tr>
                         <td>"{{ book.Title }}"</td>
                         <td>{{ book.Author }}</td>
                         <td>{{ book.Description }}</td>
                         {% if app.user %}
-                        <td><button class="btn btn-primary mt-2">Wypożycz książkę</button></td>
+                        <td><a href="/borrow/{{ book.Id }}" type="submit" class="btn btn-primary mt-2">Wypożycz książkę</a></td>
+                        {% endif %}
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <td style="width: 10%">
+                                {% if book.Status == 1 %}
+                                    Dostępna
+                                {% else %}
+                                    Niedostępna
+                                {% endif %}
+                                </td>
                         {% endif %}
                     </tr>
                 {% endfor %}
